@@ -1,8 +1,18 @@
 import { useEffect } from "react";
 import { useState } from "react";
 
-const RubrikenComponent = () => {
+// Rubriken Komponente:
+const RubrikenComponent = ({ rubrik, setRubrik }) => {
+  // useState()
   const [rubriken, setRubriken] = useState([]);
+
+  // Button Click:
+  const changeCategorie = (e) => {
+    setRubrik(e.target.dataset.categorie);
+  };
+  const changeCategoryShowAll = () => {
+    setRubrik("");
+  };
 
   useEffect(() => {
     // Hier ein Unausgelagerter Api Call innerhalb eine useEffect().
@@ -10,7 +20,6 @@ const RubrikenComponent = () => {
     const abortController = new AbortController();
     const getRubriken = async () => {
       try {
-        console.log("Rubriken Component useEffect");
         const res = await fetch(
           "https://fakestoreapi.com/products/categories",
           { signal: abortController.signal }
@@ -19,8 +28,6 @@ const RubrikenComponent = () => {
           throw new Error("Api läuft nicht");
         }
         const data = await res.json();
-        console.log("HAllo");
-        console.log(data);
         setRubriken(data);
       } catch (e) {
         // console.log(e); // AbortController meckert..
@@ -34,11 +41,30 @@ const RubrikenComponent = () => {
     <>
       {/* Rubriken! */}
       <nav className="my-5 border p-2">
-        Rubriken:
+        <div className="mb-4">Rubriken:</div>
         <ul className="flex gap-3">
+          <li>
+            <button
+              data-categorie={rubrik}
+              className="btn btn-dash"
+              onClick={(e) => {
+                changeCategoryShowAll();
+              }}
+            >
+              Show All
+            </button>
+          </li>
           {rubriken.map((rubrik, index) => (
             <li key={index}>
-              <button className="btn">{rubrik}</button>
+              <button
+                data-categorie={rubrik}
+                className="btn"
+                onClick={(e) => {
+                  changeCategorie(e);
+                }}
+              >
+                {rubrik}
+              </button>
             </li>
           ))}
         </ul>

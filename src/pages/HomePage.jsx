@@ -7,7 +7,21 @@ const HomePage = () => {
   const [currentPage, setCurrentPage] = useState(
     "https://fakestoreapi.com/products"
   );
+
   const [articles, setArticles] = useState([]);
+  const [rubrik, setRubrik] = useState("");
+  const [filteredArticles, setFilteredArticles] = useState([]);
+  const [angezeigteArtikel, setAngezeigteArtikel] = useState(articles);
+
+  // useEffect muss immer benutzt werden um auf änderungen zu reagieren. Nicht nur für Api Calls:
+  // Hier wird auch gleich gefiltert fall rubrik angegeben wurde:
+  useEffect(() => {
+    if (rubrik) {
+      setAngezeigteArtikel(articles.filter((a) => a.category === rubrik));
+    } else {
+      setAngezeigteArtikel(articles);
+    }
+  }, [articles, rubrik]);
 
   // USE EFFECT - Hole Daten
   // Hier ein ausgelagerter Api Call aus "api/getArticles.jsx" innerhalb eine useEffect().
@@ -18,6 +32,7 @@ const HomePage = () => {
       try {
         const data = await getArticles(currentPage, abortController.signal);
         setArticles(data);
+        console.log(data);
       } catch (e) {
         if (e.name === "AbortError") return; // Abord Controller.. später checken
         console.error("Fehler beim Laden:", e.message);
@@ -33,10 +48,10 @@ const HomePage = () => {
     <>
       <div className="border p-5">
         <div>Homepage!</div>
-        <RubrikenComponent />
-
+        <RubrikenComponent rubrik={rubrik} setRubrik={setRubrik} />
+        <div>{rubrik}</div>
         <div className="p-5 grid xl:grid-cols-6 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 flex-wrap">
-          {articles.map((article) => (
+          {angezeigteArtikel.map((article) => (
             <article key={article.id} className="border p-2">
               <img
                 src={article.image}
