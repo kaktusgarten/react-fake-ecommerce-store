@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getArticles } from "../api/getArticles";
-import CardArticleComponent from "../components/CardArticleComponent";
+// import CardArticleComponent from "../components/CardArticleComponent";
 
 const CardPage = () => {
   const [articles, setArticles] = useState([]);
@@ -47,22 +47,22 @@ const CardPage = () => {
       <div className="mb-4">Card Page!</div>
       {cardArticles.length === 0 && <div>Keine Artikel im Warenkorb</div>}
       {cardArticles.map((article) => (
-         <article
-        key={article.id}
-        className="border border-black p-3 flex gap-3 mb-3"
-      >
-        <div>
-          <img
-            className="border w-[100px] h-[100px] object-contain"
-            src={article.image}
-            alt={article.title}
-          />
-        </div>
-        <div>
-          <div>{article.title}</div>
-          <div className="text-sm text-gray-500">{article.price} €</div>
-        </div>
-      </article>
+        <article
+          key={article.id}
+          className="border border-black p-3 flex gap-3 mb-3"
+        >
+          <div>
+            <img
+              className="border w-[100px] h-[100px] object-contain"
+              src={article.image}
+              alt={article.title}
+            />
+          </div>
+          <div>
+            <div>{article.title}</div>
+            <div className="text-sm text-gray-500">{article.price} €</div>
+          </div>
+        </article>
         // <CardArticleComponent article={article} key={article.id} />
       ))}
     </div>
