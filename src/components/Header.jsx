@@ -9,7 +9,7 @@ export default function Header() {
         <h1 className="text-3xl mb-4">{title}</h1>
         <p>
           Vite, React, TailwindCss, DailyUiCss, React-Router, ApiCalls,
-          localStorage, useState()
+          localStorage, useState(), useEffect()
         </p>
         <hr></hr>
         {/* Navigation! */}
