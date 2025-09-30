@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { NavLink } from "react-router";
 import { useState } from "react";
 
 const RubrikenComponent = () => {
@@ -11,6 +10,7 @@ const RubrikenComponent = () => {
     const abortController = new AbortController();
     const getRubriken = async () => {
       try {
+        console.log("Rubriken Component useEffect");
         const res = await fetch(
           "https://fakestoreapi.com/products/categories",
           { signal: abortController.signal }
@@ -19,14 +19,15 @@ const RubrikenComponent = () => {
           throw new Error("Api läuft nicht");
         }
         const data = await res.json();
+        console.log("HAllo");
         console.log(data);
         setRubriken(data);
       } catch (e) {
         // console.log(e); // AbortController meckert..
       }
-
-      getRubriken();
     };
+
+    getRubriken();
   }, []);
 
   return (
