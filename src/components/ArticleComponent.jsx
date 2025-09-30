@@ -30,7 +30,7 @@ const ArticleComponent = ({ article }) => {
           alt="Article Image"
           className="mx-auto h-3/6 max-h-[200px] object-contain"
         ></img>
-        <div className="h-2/6 text-[0.6em] p-3 mb-3 overflow-auto max-h-[100px]">
+        <div className="h-2/6 text-[0.9em] p-3 mb-3 overflow-auto max-h-[100px]">
           {article.title}
         </div>
         <div className="h-1/6">
