@@ -47,7 +47,23 @@ const CardPage = () => {
       <div className="mb-4">Card Page!</div>
       {cardArticles.length === 0 && <div>Keine Artikel im Warenkorb</div>}
       {cardArticles.map((article) => (
-        <CardArticleComponent article={article} key={article.id} />
+         <article
+        key={article.id}
+        className="border border-black p-3 flex gap-3 mb-3"
+      >
+        <div>
+          <img
+            className="border w-[100px] h-[100px] object-contain"
+            src={article.image}
+            alt={article.title}
+          />
+        </div>
+        <div>
+          <div>{article.title}</div>
+          <div className="text-sm text-gray-500">{article.price} €</div>
+        </div>
+      </article>
+        // <CardArticleComponent article={article} key={article.id} />
       ))}
     </div>
   );
