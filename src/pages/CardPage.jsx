@@ -8,6 +8,7 @@ const CardPage = () => {
   // Filter-Effekt: läuft neu, wenn articles sich ändern
   useEffect(() => {
     const cartIds = JSON.parse(localStorage.getItem("cart")) || [];
+    // von ChatGPT gefiltert:
     const filtered = articles.filter((a) => cartIds.includes(String(a.id)));
     setCardArticles(filtered);
   }, [articles]);
