@@ -13,26 +13,31 @@ const CardPage = () => {
     setCardArticles(filtered);
   }, [articles]);
 
-  // API Call
+  // Ueber LocalStorage die Articles holen, Alternative: diesen useEffect auskommentieren und den dadrunter einkommentieren
   useEffect(() => {
-    const abortController = new AbortController();
-    const fetchData = async () => {
-      try {
-        const data = await getArticles(
-          "https://fakestoreapi.com/products",
-          abortController.signal
-        );
-        setArticles(data);
-      } catch (e) {
-        if (e.name === "AbortError") return;
-        console.error("Fehler beim Laden:", e.message);
-      }
-    };
-
-    fetchData();
-
-    return () => abortController.abort();
+    setArticles(JSON.parse(localStorage.getItem("articleData")) || []);
   }, []);
+
+  // Über API Call die Articles holen und nicht über LocalStorage
+  // useEffect(() => {
+  //   const abortController = new AbortController();
+  //   const fetchData = async () => {
+  //     try {
+  //       const data = await getArticles(
+  //         "https://fakestoreapi.com/products",
+  //         abortController.signal
+  //       );
+  //       setArticles(data);
+  //     } catch (e) {
+  //       if (e.name === "AbortError") return;
+  //       console.error("Fehler beim Laden:", e.message);
+  //     }
+  //   };
+
+  //   fetchData();
+
+  //   return () => abortController.abort();
+  // }, []);
 
   return (
     <div className="border p-5">

@@ -9,6 +9,17 @@ const ArticleComponent = ({ article }) => {
       existing.push(id);
       localStorage.setItem("cart", JSON.stringify(existing));
     }
+
+    const articleStoreData =
+      JSON.parse(localStorage.getItem("articleData")) || [];
+
+    const exists = articleStoreData.some(
+      (element) => element.id === article.id
+    );
+    if (!exists) {
+      const updatedArticles = [...articleStoreData, article];
+      localStorage.setItem("articleData", JSON.stringify(updatedArticles));
+    }
   };
 
   return (
