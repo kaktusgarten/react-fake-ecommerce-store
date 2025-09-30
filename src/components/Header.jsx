@@ -11,6 +11,15 @@ export default function Header() {
           Vite, React, TailwindCss, DailyUiCss, React-Router, ApiCalls,
           localStorage, useState(), useEffect()
         </p>
+        <p className="mb-3">
+          <a
+            href="https://react-fake-ecommerce-store.onrender.com/"
+            target="_blank"
+            className="text-fuchsia-400"
+          >
+            https://react-fake-ecommerce-store.onrender.com/
+          </a>
+        </p>
         <hr></hr>
         {/* Navigation! */}
         <nav className="my-5">
