@@ -42,7 +42,7 @@ const RubrikenComponent = ({ rubrik, setRubrik }) => {
       {/* Rubriken! */}
       <nav className="my-5 border p-2">
         <div className="mb-4">Rubriken:</div>
-        <ul className="flex gap-3">
+        <ul className="flex gap-3 flex-wrap">
           <li>
             <button
               data-categorie={rubrik}
