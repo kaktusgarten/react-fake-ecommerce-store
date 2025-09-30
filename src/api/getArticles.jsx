@@ -1,3 +1,4 @@
+// ausgelagerter Api Call der in HomePage.jsx innerhalb des useEffects aufgerufen wird
 export const getArticles = async (url, signal) => {
   try {
     const res = await fetch(url, { signal });

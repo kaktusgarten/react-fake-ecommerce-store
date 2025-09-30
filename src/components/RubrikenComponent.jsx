@@ -6,7 +6,8 @@ const RubrikenComponent = () => {
   const [rubriken, setRubriken] = useState([]);
 
   useEffect(() => {
-    // Hier ein Unausgelagerter Api Call innerhalb eine useEffect(). Beispiel für ausgelagerten Call im getArticles.jsx!
+    // Hier ein Unausgelagerter Api Call innerhalb eine useEffect().
+    // Beispiel für ausgelagerten Call im "api/getArticles.jsx" der benutzt wird in "HomePage.jsx"
     const abortController = new AbortController();
     const getRubriken = async () => {
       try {
@@ -21,11 +22,11 @@ const RubrikenComponent = () => {
         console.log(data);
         setRubriken(data);
       } catch (e) {
-        // console.log(e); // meckert wegen AbortController
+        // console.log(e); // AbortController meckert..
       }
-    };
 
-    getRubriken();
+      getRubriken();
+    };
   }, []);
 
   return (

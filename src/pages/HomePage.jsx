@@ -10,7 +10,8 @@ const HomePage = () => {
   const [articles, setArticles] = useState([]);
 
   // USE EFFECT - Hole Daten
-  // Hier ein ausgelagerter Api Call innerhalb eine useEffect(). Beispiel für NICHT ausgelagerten Call in api/getRubriken.jsx
+  // Hier ein ausgelagerter Api Call aus "api/getArticles.jsx" innerhalb eine useEffect().
+  // Beispiel für NICHT ausgelagerten Call in "api/getRubriken.jsx"
   useEffect(() => {
     const abortController = new AbortController();
     const fetchData = async () => {
