@@ -1,3 +1,8 @@
 @import "tailwindcss";
 @plugin "daisyui";
 @import "./styles/styles.css";
+
+.active {
+  background: #182d55;
+  padding: 0 5px;
+}
